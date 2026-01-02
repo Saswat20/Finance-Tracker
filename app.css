@@ -1,0 +1,129 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+.header {
+  background-color: #333;
+  color: #ffffff;
+  text-align: center;
+  padding: 15px;
+}
+
+/* Main Container */
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+}
+
+/* Form and Dashboard Boxes */
+.form-container,
+.dashboard {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 50%;
+}
+
+/* Stats Section */
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Cards */
+.card {
+  width: 30%;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.income {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.expense {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.balance {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+/* Transaction History */
+.history-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.history-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.history-list li.income {
+  border-right: 5px solid #28a745;
+}
+
+.history-list li.expense {
+  border-right: 5px solid #dc3545;
+}
+
+/* Form Elements */
+input,
+select,
+button {
+  width: 100%;
+  padding: 10px;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+input,
+select {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+/* Buttons */
+button {
+  background-color: #333;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .form-container,
+  .dashboard {
+    width: 100%;
+  }
+}
