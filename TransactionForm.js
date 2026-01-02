@@ -1,25 +1,49 @@
+import React, { useState } from 'react';
+import axios from 'axios';
 
-import {useState} from 'react';
+const TransactionForm = ({ refreshData }) => {
+  const [desc, setDesc] = useState('');
+  const [amount, setAmount] = useState('');
+  const [type, setType] = useState('income');
 
-export default function TransactionForm({refresh}){
- const [title,setTitle]=useState('');
- const [amount,setAmount]=useState('');
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = { description: desc, amount: amount, type: type };
 
- const submit=async()=>{
-  await fetch('http://localhost/FinanceTracker/backend/api/add_transaction.php',{
-   method:'POST',
-   headers:{'Content-Type':'application/json'},
-   body:JSON.stringify({title,amount})
-  });
-  setTitle(''); setAmount('');
-  refresh();
- };
+    axios.post('http://localhost/finance_tracker/backend/api/add_transaction.php', data)
+      .then(res => {
+        setDesc('');
+        setAmount('');
+        refreshData(); // Refresh the list without reloading page
+      });
+  };
 
- return (
-  <div>
-   <input placeholder="Title" value={title} onChange={e=>setTitle(e.target.value)}/>
-   <input placeholder="Amount" value={amount} onChange={e=>setAmount(e.target.value)}/>
-   <button onClick={submit}>Add</button>
-  </div>
- );
-}
+  return (
+    <div className="form-container">
+      <h3>Add New Transaction</h3>
+      <form onSubmit={handleSubmit}>
+        <input 
+          type="text" 
+          placeholder="Description" 
+          value={desc} 
+          onChange={(e) => setDesc(e.target.value)} 
+          required 
+        />
+        <input 
+          type="number" 
+          placeholder="Amount" 
+          value={amount} 
+          onChange={(e) => setAmount(e.target.value)} 
+          required 
+        />
+        <select value={type} onChange={(e) => setType(e.target.value)}>
+          <option value="income">Income</option>
+          <option value="expense">Expense</option>
+        </select>
+        <button type="submit">Add Transaction</button>
+      </form>
+    </div>
+  );
+};
+
+export default TransactionForm;
